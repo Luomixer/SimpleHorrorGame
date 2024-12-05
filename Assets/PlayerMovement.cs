@@ -10,11 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Header("Jump settings")]
-    public static float jumpPower = 15f;
-    public static float jumpPeak = 0.32f;
-    public static float jumpDescent = 0.26f;
-    float jumpGravity = jumpPower * 2 / Mathf.Pow(jumpPeak, 2);
-    float fallGravity = jumpPower * 2 / Mathf.Pow(jumpDescent, 2);
+    public float jumpPower = 15f;
     public float coyoteTime;
     float coyoteTimeCounter;
     bool Jumped;
@@ -91,11 +87,12 @@ public class PlayerMovement : MonoBehaviour
         // Changes gravity depending on Y
         if (rb.linearVelocity.y  < 0f)
         {
-            gravity.force = new Vector3(0f, fallGravity, 0f);
+            gravity.enabled = true;
+
         }
         else
         {
-            gravity.force = new Vector3(0f, jumpGravity, 0f);
+            gravity.enabled = false;
         }
     }
     private void HandleJump()
